@@ -4,7 +4,9 @@
   "description": "make opening files configurable",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dist": "electron-packager . Apri --out=./dist --overwrite",
+    "clean": "git clean -fx dist; find dist -maxdepth 1 -type d -name 'Apri-*' -exec rm -rf {} \\;"
   },
   "repository": "https://github.com/shuji-koike/apri",
   "keywords": [
