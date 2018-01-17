@@ -1,0 +1,19 @@
+{
+  "name": "apri",
+  "version": "1.0.0",
+  "description": "make opening files configurable",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/shuji-koike/apri",
+  "keywords": [
+    "electron-app",
+    "utility"
+  ],
+  "author": "shuji-koike",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "~1.7.10"
+  }
+}
