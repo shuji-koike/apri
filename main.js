@@ -9,6 +9,13 @@ const url = require('url')
 
 const DEBBUG = true
 
+if (DEBBUG) {
+  // https://github.com/yan-foto/electron-reload#usage
+  require('electron-reload')(__dirname, {
+    electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
+  });
+}
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
