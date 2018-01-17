@@ -6,7 +6,9 @@
   "scripts": {
     "start": "electron .",
     "dist": "electron-packager . Apri --out=./dist --overwrite",
-    "clean": "git clean -fx dist; find dist -maxdepth 1 -type d -name 'Apri-*' -exec rm -rf {} \\;"
+    "clean": "git clean -fx dist; find dist -maxdepth 1 -type d -name 'Apri-*' -exec rm -rf {} \\;",
+    "publishLocal": "cp -r dist/Apri-darwin-x64/Apri.app ~/Applications",
+    "unpublishLocal": "trash -a ~/Applications/Apri.app"
   },
   "repository": "https://github.com/shuji-koike/apri",
   "keywords": [
