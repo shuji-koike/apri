@@ -69,3 +69,8 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+const apri = new (require('./src/apri.js'))()
+
+// https://github.com/electron/electron/blob/master/docs/api/app.md#event-open-file-macos
+app.on('open-file', apri.handler.bind(apri))
