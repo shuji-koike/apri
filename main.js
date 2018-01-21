@@ -7,7 +7,7 @@ const BrowserWindow = electron.BrowserWindow
 const path = require('path')
 const url = require('url')
 
-const DEBBUG = true
+const DEBBUG = process.env.NODE_ENV == "development";
 
 if (DEBBUG) {
   // https://github.com/yan-foto/electron-reload#usage
