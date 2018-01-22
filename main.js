@@ -74,3 +74,7 @@ const apri = new (require('./src/apri.js'))()
 
 // https://github.com/electron/electron/blob/master/docs/api/app.md#event-open-file-macos
 app.on('open-file', apri.handler.bind(apri))
+
+electron.ipcMain.on("ready", (event, arg) => {
+  event.sender.send("data", apri.getSeralizedRules());
+});
