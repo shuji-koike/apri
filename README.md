@@ -6,24 +6,21 @@ Make opening files configurable.
 
 ```sh
 brew install node
-npm install yarn
+npm install -g yarn
 ```
 
 ```sh
 yarn install
 ```
 
+# run
+
+```sh
+yarn dev
+```
+
 # build
 
 ```sh
-yarn clean && yarn dist
-```
-
-# install
-
-`install`, `uninstall` Apri.app to user's `~/Applications` directory.
-
-```sh
-yarn publishLocal
-yarn unpublishLocal
+yarn compile
 ```
