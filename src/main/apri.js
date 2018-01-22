@@ -2,11 +2,16 @@ const electron = require('electron');
 const fs = require('fs');
 const path = require('path');
 const safeEval = require('safe-eval');
+const child_process = require('child_process');
 
 module.exports = class Apri {
   constructor() {
     this.rulesPath = path.join(electron.app.getPath('home'), '.apri.js');
     this.rules = this.buildRules(this.rulesPath);
+    this.context = {
+      "console": console,
+      "exec": child_process.exec
+    };
   }
 
   handler(event, path) {
@@ -16,16 +21,15 @@ module.exports = class Apri {
         rule = {'matcher': rule[0], 'action': rule[1]};
       if (typeof(rule.matcher.test) === 'function' && rule.matcher.test(path)) {
         console.info(`matched: rule[${idx}] path=${path}`);
-        rule['action'](path);
+        rule['action'](path, this.context);
       }
     });
   }
 
   buildRules(path) {
     if (fs.existsSync(path) && fs.lstatSync(path).isFile()) {
-      let rules = [];
-      console.info(`buildRules file=${path} length=${rules.length}`);
       let config = safeEval(fs.readFileSync(path));
+      console.info(`buildRules file=${path} length=${config.rules.length}`);
       return config.rules;
     } else {
       console.error(`buildRules file=${path} not found`);
