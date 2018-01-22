@@ -22,7 +22,7 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: DEBBUG ? 1200 : 600})
+  mainWindow = new BrowserWindow({width: 800, height: DEBBUG ? 1200 : 600, x: 0, y: 0})
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
