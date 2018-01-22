@@ -1,11 +1,11 @@
-const electron = require('electron')
-const fs = require('fs')
-const path = require('path')
-const _ = require('lodash')
+const electron = require('electron');
+const fs = require('fs');
+const path = require('path');
+const safeEval = require('safe-eval');
 
 module.exports = class Apri {
   constructor() {
-    this.rulesPath = path.join(electron.app.getPath('userData'), 'rules.js');
+    this.rulesPath = path.join(electron.app.getPath('userData'), 'apri.js');
     this.rules = this.buildRules(this.rulesPath);
   }
 
@@ -22,10 +22,11 @@ module.exports = class Apri {
   }
 
   buildRules(path) {
-    if (fs.lstatSync(path).isFile()) {
-      let rules = require(path);
+    if (fs.existsSync(path) && fs.lstatSync(path).isFile()) {
+      let rules = [];
       console.info(`buildRules file=${path} length=${rules.length}`);
-      return rules;
+      let config = safeEval(fs.readFileSync(path));
+      return config.rules;
     } else {
       console.error(`buildRules file=${path} not found`);
       return [];
@@ -36,7 +37,7 @@ module.exports = class Apri {
     rules = rules || this.rules || [];
     let seralizedRules = rules.map(rule => {
       let seralizedRule = {};
-      if (rule instanceof Array) {
+      if (Array.isArray(rule)) {
         seralizedRule.matcher = rule[0];
         seralizedRule.action = rule[1];
       }
@@ -49,9 +50,9 @@ module.exports = class Apri {
 
   serialize(raw) {
     let seralized = raw;
-    if (raw instanceof RegExp) {
+    if (raw.constructor.name == "RegExp") {
       seralized = {type: "RegExp", data: raw.toString()};
-    } else if (raw instanceof Function) {
+    } else if (typeof(raw) == "function") {
       seralized = {type: "Function", data: raw.toString()};
     }
     return seralized;
