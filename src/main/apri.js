@@ -5,7 +5,7 @@ const safeEval = require('safe-eval');
 
 module.exports = class Apri {
   constructor() {
-    this.rulesPath = path.join(electron.app.getPath('userData'), 'apri.js');
+    this.rulesPath = path.join(electron.app.getPath('home'), '.apri.js');
     this.rules = this.buildRules(this.rulesPath);
   }
 
