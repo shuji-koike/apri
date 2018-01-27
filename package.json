@@ -4,7 +4,7 @@
   "license": "MIT",
   "description": "make opening files configurable",
   "scripts": {
-    "start": "electron-webpack dev",
+    "start": "yarn install && yarn dev",
     "dev": "electron-webpack dev",
     "compile": "electron-webpack",
     "dist": "yarn compile && electron-builder",
