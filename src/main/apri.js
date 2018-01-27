@@ -61,4 +61,8 @@ module.exports = class Apri {
     }
     return seralized;
   }
+
+  openConfig() {
+    child_process.execFile("open", [this.rulesPath]);
+  }
 }

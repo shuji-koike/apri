@@ -68,3 +68,7 @@ app.on('open-file', apri.handler.bind(apri));
 electron.ipcMain.on("ready", (event, arg) => {
   event.sender.send("data", apri.getSeralizedRules());
 });
+
+electron.ipcMain.on("apri.config.open", (event, arg) => {
+  apri.openConfig();
+});
