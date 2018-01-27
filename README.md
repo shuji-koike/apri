@@ -5,8 +5,7 @@ Make opening files configurable.
 # setup
 
 ```sh
-brew install node
-npm install -g yarn
+brew install node yarn
 ```
 
 ```sh
